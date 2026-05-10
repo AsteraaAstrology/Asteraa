@@ -1,0 +1,37 @@
+{
+  "heartLine": {
+    "long_curved": {
+      "prediction": "Freely expresses emotions"
+    },
+    "straight_short": {
+      "prediction": "Less interest in romance"
+    },
+    "broken": {
+      "prediction": "Emotional trauma"
+    }
+  },
+
+  "headLine": {
+    "straight": {
+      "prediction": "Logical thinker"
+    },
+    "curved": {
+      "prediction": "Creative imagination"
+    },
+    "wavy": {
+      "prediction": "Short attention span"
+    }
+  },
+
+  "lifeLine": {
+    "deep_long": {
+      "prediction": "Strong vitality"
+    },
+    "broken": {
+      "prediction": "Major life changes"
+    },
+    "multiple": {
+      "prediction": "Extra vitality"
+    }
+  }
+}
