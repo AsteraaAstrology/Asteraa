@@ -14,25 +14,34 @@ export default function CompatibilityPage() {
 
   const generateReport = async () => {
 
-    try {
+  try {
 
-      const response = await fetch(
+    const response = await fetch(
 
-        `http://127.0.0.1:8000/match?bride_name=${brideName}&bride_dob=${brideDob}&groom_name=${groomName}&groom_dob=${groomDob}`
+      `https://asteraa.onrender.com/match?bride_name=${encodeURIComponent(brideName)}&bride_dob=${encodeURIComponent(brideDob)}&groom_name=${encodeURIComponent(groomName)}&groom_dob=${encodeURIComponent(groomDob)}`
 
-      );
+    );
 
-      const data = await response.json();
+    const data = await response.json();
 
-      setResult(data);
+    console.log(data);
 
-    } catch (error) {
+    if (!data.success) {
 
-      console.log(error);
+      alert(data.error || "Compatibility check failed");
 
-      alert("Server Error");
+      return;
     }
-  };
+
+    setResult(data);
+
+  } catch (error) {
+
+    console.log(error);
+
+    alert("Server Error");
+  }
+};
 
   return (
 
