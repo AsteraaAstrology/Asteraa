@@ -12,7 +12,7 @@ export default function HoroscopePage() {
 
   useEffect(() => {
 
-    fetch("http://127.0.0.1:8000/horoscopes")
+    fetch("https://asteraa.onrender.com/horoscopes")
       .then((res) => res.json())
       .then((data) => {
 

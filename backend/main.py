@@ -292,7 +292,7 @@ async def add_blog(
 
             "content": content,
 
-            "image": f"http://127.0.0.1:8000/uploads/{unique_name}",
+            "image": f"https://asteraa.onrender.com/uploads/{unique_name}",
 
             "created_at": datetime.now().strftime("%d %B %Y")
         }

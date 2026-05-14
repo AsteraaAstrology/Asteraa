@@ -38,7 +38,7 @@ export default function PalmReadingPage() {
       setLoading(true);
 
       const response = await axios.post(
-        "http://127.0.0.1:8000/scan-palm",
+        "https://asteraa.onrender.com/scan-palm",
         formData
       );
 

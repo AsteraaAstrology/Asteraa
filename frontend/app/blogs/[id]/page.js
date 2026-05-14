@@ -11,7 +11,7 @@ export default function BlogDetails({ params }) {
 
   useEffect(() => {
 
-    fetch(`http://127.0.0.1:8000/blogs/${resolvedParams.id}`)
+    fetch(`https://asteraa.onrender.com//blogs/${resolvedParams.id}`)
       .then((res) => res.json())
       .then((data) => setBlog(data))
       .catch((error) => console.log(error));
