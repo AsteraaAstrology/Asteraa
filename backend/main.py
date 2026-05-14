@@ -18,7 +18,6 @@ import uuid
 import json
 import cv2
 import numpy as np
-import mediapipe as mp
 from datetime import datetime
 
 app = FastAPI()
@@ -26,13 +25,6 @@ app = FastAPI()
 # =====================================================
 # CORS
 # =====================================================
-mp_hands = mp.solutions.hands
-
-hands = mp_hands.Hands(
-    static_image_mode=True,
-    max_num_hands=1,
-    min_detection_confidence=0.5
-)
 
 app.add_middleware(
     CORSMiddleware,
@@ -139,17 +131,26 @@ def save_horoscopes(data):
     with open(HOROSCOPE_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4)
 
+
 def detect_hand(image):
 
-    rgb = cv2.cvtColor(
+    hsv = cv2.cvtColor(
         image,
-        cv2.COLOR_BGR2RGB
+        cv2.COLOR_BGR2HSV
     )
 
-    results = hands.process(rgb)
+    lower_skin = np.array([0, 20, 70], dtype=np.uint8)
+    upper_skin = np.array([20, 255, 255], dtype=np.uint8)
 
-    return results.multi_hand_landmarks is not None
+    mask = cv2.inRange(
+        hsv,
+        lower_skin,
+        upper_skin
+    )
 
+    skin_pixels = cv2.countNonZero(mask)
+
+    return skin_pixels > 5000
 
 def analyze_palm(image):
 
