@@ -16,7 +16,7 @@ export default function PalmReadingPage() {
   const [loading, setLoading] = useState(false);
 
   // =====================================================
-  // SCAN PALM
+  // UPLOAD PALM
   // =====================================================
 
   const uploadPalm = async (e) => {
@@ -77,50 +77,45 @@ export default function PalmReadingPage() {
           </h1>
 
           <p className="text-gray-400 text-lg">
-            Scan your palm and discover your destiny
+            Upload your palm image and discover your destiny
           </p>
 
         </div>
 
-        {/* =====================================================
-            BANNER IMAGE
-        ===================================================== */}
-
         <div className="mb-14 rounded-[32px] overflow-hidden border border-yellow-500/20">
 
-          <img
-            src="/palm-reading-banner.jpeg"
-            alt="Palm Reading Banner"
-            className="w-full h-[500px] object-cover"
-          />
+         <img
+         src="/palm-reading-banner.jpeg"
+         alt="Palm Reading Banner"
+         className="w-full h-[500px] object-cover"
+         />
 
         </div>
 
         {/* =====================================================
-            SCAN CARD
+            UPLOAD CARD
         ===================================================== */}
 
         <div className="bg-white/5 border border-white/10 rounded-[32px] p-8 backdrop-blur-xl">
 
           <div className="flex flex-col items-center">
 
-            {/* SCAN BUTTON */}
+            {/* IMAGE UPLOAD */}
 
             <label className="w-full max-w-md cursor-pointer">
 
               <div className="bg-yellow-400 text-black text-center py-4 rounded-2xl font-bold text-lg hover:scale-[1.02] transition">
 
-                Scan Now
+                Upload Palm Image
 
               </div>
 
-               <input
-               type="file"
-               accept="image/*"
-               capture="environment"
-               onChange={uploadPalm}
-               className="hidden"
-               />
+              <input
+                type="file"
+                accept="image/*"
+                onChange={uploadPalm}
+                className="hidden"
+              />
 
             </label>
 

@@ -12,8 +12,6 @@ from backend.schemas import HoroscopeCreate
 
 from astrology_lib.compatibility import calculate_compatibility
 
-from ultralytics import YOLO
-
 import shutil
 import os
 import uuid
