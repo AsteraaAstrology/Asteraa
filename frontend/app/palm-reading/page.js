@@ -114,12 +114,13 @@ export default function PalmReadingPage() {
 
               </div>
 
-              <input
-                type="file"
-                accept="image/*"
-                onChange={uploadPalm}
-                className="hidden"
-              />
+               <input
+               type="file"
+               accept="image/*"
+               capture="environment"
+               onChange={uploadPalm}
+               className="hidden"
+               />
 
             </label>
 
