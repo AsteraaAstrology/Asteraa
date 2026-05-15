@@ -592,6 +592,32 @@ export default function Home() {
 
           </div>
 
+          <div className="mt-24 px-6">
+
+          <div className="max-w-7xl mx-auto">
+
+           <h2 className="text-4xl md:text-5xl font-bold text-center text-yellow-400 mb-6">
+           Kundali Chakra
+           </h2>
+
+           <p className="text-center text-gray-400 text-lg mb-10 max-w-3xl mx-auto">
+           Your cosmic blueprint and divine path through Vedic astrology.
+           </p>
+
+          <div className="rounded-[32px] overflow-hidden border border-yellow-500/20 shadow-2xl">
+
+           <img
+           src="/kundali-chakra.jpg"
+           alt="Kundali Chakra"
+           className="w-full object-cover"
+           />
+
+            </div>
+
+           </div>
+
+           </div>
+
           <div className="flex gap-6 text-gray-400 text-sm">
 
             <a href="#" className="hover:text-yellow-400 transition">
