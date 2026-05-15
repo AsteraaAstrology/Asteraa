@@ -12,6 +12,8 @@ from backend.schemas import HoroscopeCreate
 
 from astrology_lib.compatibility import calculate_compatibility
 
+from ultralytics import YOLO
+
 import shutil
 import os
 import uuid
@@ -21,6 +23,8 @@ import numpy as np
 from datetime import datetime
 
 app = FastAPI()
+
+model = YOLO("yolov8n.pt")
 
 # =====================================================
 # CORS
@@ -134,23 +138,16 @@ def save_horoscopes(data):
 
 def detect_hand(image):
 
-    hsv = cv2.cvtColor(
-        image,
-        cv2.COLOR_BGR2HSV
-    )
+    results = model(image)
 
-    lower_skin = np.array([0, 20, 70], dtype=np.uint8)
-    upper_skin = np.array([20, 255, 255], dtype=np.uint8)
+    for result in results:
 
-    mask = cv2.inRange(
-        hsv,
-        lower_skin,
-        upper_skin
-    )
+        boxes = result.boxes
 
-    skin_pixels = cv2.countNonZero(mask)
+        if len(boxes) > 0:
+            return True
 
-    return skin_pixels > 5000
+    return False
 
 def analyze_palm(image):
 
