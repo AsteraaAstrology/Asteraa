@@ -82,6 +82,16 @@ export default function PalmReadingPage() {
 
         </div>
 
+        <div className="mb-14 rounded-[32px] overflow-hidden border border-yellow-500/20">
+
+         <img
+         src="/palm-reading-banner.jpeg"
+         alt="Palm Reading Banner"
+         className="w-full h-[500px] object-cover"
+         />
+
+        </div>
+
         {/* =====================================================
             UPLOAD CARD
         ===================================================== */}

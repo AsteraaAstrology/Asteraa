@@ -63,6 +63,16 @@ export default function CompatibilityPage() {
 
         </div>
 
+        <div className="mb-14 rounded-[32px] overflow-hidden border border-yellow-500/20">
+
+         <img
+         src="/compatibility-banner.jpeg"
+         alt="Compatibility Banner"
+         className="w-full h-[500px] object-cover"
+         />
+
+        </div>
+
         {/* Form */}
 
         <div className="bg-white/5 border border-white/10 rounded-[32px] p-8 md:p-12">
