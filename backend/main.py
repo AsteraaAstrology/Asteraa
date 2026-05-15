@@ -132,56 +132,177 @@ def save_horoscopes(data):
     with open(HOROSCOPE_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4)
 
-
 def detect_hand(image):
 
-    hsv = cv2.cvtColor(
-        image,
-        cv2.COLOR_BGR2HSV
-    )
+    try:
 
-    lower_skin = np.array([0, 20, 70], dtype=np.uint8)
-    upper_skin = np.array([20, 255, 255], dtype=np.uint8)
+        # Resize image
+        image = cv2.resize(image, (500, 500))
 
-    mask = cv2.inRange(
-        hsv,
-        lower_skin,
-        upper_skin
-    )
+        # Convert to HSV
+        hsv = cv2.cvtColor(
+            image,
+            cv2.COLOR_BGR2HSV
+        )
 
-    skin_pixels = cv2.countNonZero(mask)
+        # Skin color range
+        lower_skin = np.array(
+            [0, 20, 70],
+            dtype=np.uint8
+        )
 
-    return skin_pixels > 5000
+        upper_skin = np.array(
+            [20, 255, 255],
+            dtype=np.uint8
+        )
+
+        # Create mask
+        mask = cv2.inRange(
+            hsv,
+            lower_skin,
+            upper_skin
+        )
+
+        # Blur
+        mask = cv2.GaussianBlur(
+            mask,
+            (5, 5),
+            0
+        )
+
+        # Remove noise
+        kernel = np.ones((5, 5), np.uint8)
+
+        mask = cv2.morphologyEx(
+            mask,
+            cv2.MORPH_CLOSE,
+            kernel
+        )
+
+        # Find contours
+        contours, _ = cv2.findContours(
+            mask,
+            cv2.RETR_EXTERNAL,
+            cv2.CHAIN_APPROX_SIMPLE
+        )
+
+        if len(contours) == 0:
+            return False
+
+        # Largest contour
+        largest = max(
+            contours,
+            key=cv2.contourArea
+        )
+
+        area = cv2.contourArea(largest)
+
+        # Hand area threshold
+        if area > 15000:
+            return True
+
+        return False
+
+    except:
+        return False
+
+
+import random
 
 def analyze_palm(image):
 
-    result = {
+    personalities = [
+        "Creative and intuitive",
+        "Highly emotional and caring",
+        "Strong leadership personality",
+        "Independent and confident",
+        "Calm and intelligent",
+        "Spiritual and thoughtful",
+        "Energetic and ambitious",
+        "Practical and disciplined",
+        "Sensitive and artistic",
+        "Analytical and focused"
+    ]
+
+    careers = [
+        "Success in business and leadership",
+        "Suitable for artistic professions",
+        "Strong communication skills",
+        "Growth in technology field",
+        "Good future in management",
+        "Creative career opportunities",
+        "Stable financial future",
+        "Strong entrepreneurial ability",
+        "Success through hard work",
+        "Natural teaching abilities"
+    ]
+
+    loves = [
+        "Emotionally balanced relationship",
+        "Deep romantic connection",
+        "Loyal and supportive partner",
+        "Strong emotional understanding",
+        "Marriage stability indicated",
+        "Passionate love life",
+        "Long-term compatibility",
+        "Needs emotional communication",
+        "Balanced relationship energy",
+        "Supportive married life"
+    ]
+
+    healths = [
+        "Good vitality and energy",
+        "Strong mental health",
+        "Need proper rest and balance",
+        "Healthy lifestyle indicated",
+        "Good emotional balance",
+        "Strong physical endurance",
+        "Stress management important",
+        "Generally positive health",
+        "Strong recovery abilities",
+        "Energetic personality"
+    ]
+
+    return {
 
         "lifeLine": {
-            "type": "deep",
-            "prediction": "Strong vitality and energy"
+            "type": random.choice(["deep", "clear", "long"]),
+            "prediction": random.choice([
+                "Strong vitality",
+                "Long healthy life",
+                "Energetic personality",
+                "Stable life journey"
+            ])
         },
 
         "headLine": {
-            "type": "clear",
-            "prediction": "Focused and logical thinker"
+            "type": random.choice(["clear", "curved", "straight"]),
+            "prediction": random.choice([
+                "Logical thinker",
+                "Creative mindset",
+                "Focused personality",
+                "Strong intelligence"
+            ])
         },
 
         "heartLine": {
-            "type": "strong",
-            "prediction": "Emotionally expressive"
+            "type": random.choice(["strong", "deep", "balanced"]),
+            "prediction": random.choice([
+                "Emotionally expressive",
+                "Loyal in relationships",
+                "Deep emotional connection",
+                "Balanced emotions"
+            ])
         },
 
-        "personality": "Creative and intuitive",
+        "personality": random.choice(personalities),
 
-        "career": "Suitable for communication and artistic work",
+        "career": random.choice(careers),
 
-        "love": "Emotionally balanced",
+        "love": random.choice(loves),
 
-        "health": "Good vitality"
+        "health": random.choice(healths)
     }
-
-    return result
 
 # =====================================================
 # AUTO REMOVE OLD HOROSCOPES
