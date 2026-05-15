@@ -571,7 +571,17 @@ export default function Home() {
         </div>
 
       </section>
-       <div className="mt-24 px-6">
+      
+
+      {/* =====================================================
+          FOOTER
+      ===================================================== */}
+
+      <footer className="border-t border-white/10 py-10 relative z-10">
+
+        <div className="max-w-7xl mx-auto px-5 md:px-10 flex flex-col md:flex-row justify-between items-center gap-6">
+          
+           <div className="mt-24 px-6">
 
           <div className="max-w-7xl mx-auto">
 
@@ -596,14 +606,6 @@ export default function Home() {
            </div>
 
            </div>
-
-      {/* =====================================================
-          FOOTER
-      ===================================================== */}
-
-      <footer className="border-t border-white/10 py-10 relative z-10">
-
-        <div className="max-w-7xl mx-auto px-5 md:px-10 flex flex-col md:flex-row justify-between items-center gap-6">
 
           <div className="text-center md:text-left">
 

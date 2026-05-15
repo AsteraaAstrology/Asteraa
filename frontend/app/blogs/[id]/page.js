@@ -1,28 +1,48 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { use } from "react";
+import { useParams } from "next/navigation";
 
-export default function BlogDetails({ params }) {
+export default function BlogDetails() {
 
-  const resolvedParams = use(params);
+  const params = useParams();
 
   const [blog, setBlog] = useState(null);
 
   useEffect(() => {
 
-    fetch(`https://asteraa.onrender.com//blogs/${resolvedParams.id}`)
+    fetch(`https://asteraa.onrender.com/blogs/${params.id}`)
       .then((res) => res.json())
-      .then((data) => setBlog(data))
-      .catch((error) => console.log(error));
+      .then((data) => {
 
-  }, [resolvedParams.id]);
+        // BACKEND RETURNS:
+        // { success: true, blog: {...} }
+
+        if (data.success) {
+
+          setBlog(data.blog);
+
+        } else {
+
+          setBlog(null);
+        }
+
+      })
+      .catch((error) => {
+
+        console.log(error);
+
+      });
+
+  }, [params.id]);
+
+  // LOADING
 
   if (!blog) {
 
     return (
 
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-screen bg-[#070B16] flex items-center justify-center text-white">
 
         <h1 className="text-3xl font-bold">
           Loading Article...
@@ -34,19 +54,19 @@ export default function BlogDetails({ params }) {
 
   return (
 
-    <main className="min-h-screen bg-[#F8F8F8] text-black">
+    <main className="min-h-screen bg-[#070B16] text-white">
 
       {/* HEADER */}
 
-      <div className="bg-white border-b">
+      <div className="border-b border-white/10">
 
-        <div className="max-w-5xl mx-auto px-6 py-10">
+        <div className="max-w-5xl mx-auto px-6 py-14">
 
-          <p className="text-blue-600 mb-4">
+          <p className="text-yellow-400 mb-5 text-lg">
             {blog.category}
           </p>
 
-          <h1 className="text-5xl font-serif leading-tight">
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight">
             {blog.title}
           </h1>
 
@@ -61,18 +81,22 @@ export default function BlogDetails({ params }) {
         <img
           src={blog.image}
           alt={blog.title}
-          className="w-full rounded-xl"
+          className="w-full h-[500px] object-cover rounded-[32px] border border-white/10"
         />
 
       </div>
 
       {/* ARTICLE */}
 
-      <article className="max-w-4xl mx-auto px-6 pb-20">
+      <article className="max-w-4xl mx-auto px-6 pb-24">
 
-        <div className="bg-white p-10 rounded-xl border leading-9 text-[19px] whitespace-pre-line">
+        <div className="bg-white/5 border border-white/10 p-8 md:p-12 rounded-[32px]">
 
-          {blog.content}
+          <p className="text-gray-300 leading-[2.2] text-[18px] whitespace-pre-line">
+
+            {blog.content}
+
+          </p>
 
         </div>
 
