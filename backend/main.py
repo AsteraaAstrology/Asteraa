@@ -138,16 +138,23 @@ def save_horoscopes(data):
 
 def detect_hand(image):
 
-    results = model(image)
+    hsv = cv2.cvtColor(
+        image,
+        cv2.COLOR_BGR2HSV
+    )
 
-    for result in results:
+    lower_skin = np.array([0, 20, 70], dtype=np.uint8)
+    upper_skin = np.array([20, 255, 255], dtype=np.uint8)
 
-        boxes = result.boxes
+    mask = cv2.inRange(
+        hsv,
+        lower_skin,
+        upper_skin
+    )
 
-        if len(boxes) > 0:
-            return True
+    skin_pixels = cv2.countNonZero(mask)
 
-    return False
+    return skin_pixels > 5000
 
 def analyze_palm(image):
 
