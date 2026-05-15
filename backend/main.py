@@ -22,7 +22,6 @@ from datetime import datetime
 
 app = FastAPI()
 
-model = YOLO("yolov8n.pt")
 
 # =====================================================
 # CORS
