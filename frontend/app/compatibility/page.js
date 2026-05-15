@@ -16,20 +16,16 @@ export default function CompatibilityPage() {
 
   try {
 
+    setResult(null);
+
     const url =
       `https://asteraa.onrender.com/match?bride_name=${encodeURIComponent(brideName)}&bride_dob=${encodeURIComponent(brideDob)}&groom_name=${encodeURIComponent(groomName)}&groom_dob=${encodeURIComponent(groomDob)}`;
 
-    console.log(url);
-
     const response = await fetch(url);
-
-    console.log(response);
 
     if (!response.ok) {
 
-      alert("API Error");
-
-      return;
+      throw new Error("API Failed");
     }
 
     const data = await response.json();
@@ -40,9 +36,9 @@ export default function CompatibilityPage() {
 
   } catch (error) {
 
-    console.log("FULL ERROR:", error);
+    console.error(error);
 
-    alert("Server Error");
+    alert(error.message);
   }
 };
 

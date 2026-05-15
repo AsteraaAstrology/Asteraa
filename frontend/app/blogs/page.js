@@ -9,7 +9,7 @@ export default function BlogsPage() {
 
  useEffect(() => {
 
-  fetch("http://127.0.0.1:8000/blogs")
+  fetch("https://asteraa.onrender.com/blogs")
     .then((res) => res.json())
     .then((data) => {
 
