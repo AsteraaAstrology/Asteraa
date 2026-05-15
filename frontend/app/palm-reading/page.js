@@ -16,7 +16,7 @@ export default function PalmReadingPage() {
   const [loading, setLoading] = useState(false);
 
   // =====================================================
-  // UPLOAD PALM
+  // SCAN PALM
   // =====================================================
 
   const uploadPalm = async (e) => {
@@ -77,36 +77,40 @@ export default function PalmReadingPage() {
           </h1>
 
           <p className="text-gray-400 text-lg">
-            Upload your palm image and discover your destiny
+            Scan your palm and discover your destiny
           </p>
 
         </div>
 
+        {/* =====================================================
+            BANNER IMAGE
+        ===================================================== */}
+
         <div className="mb-14 rounded-[32px] overflow-hidden border border-yellow-500/20">
 
-         <img
-         src="/palm-reading-banner.jpeg"
-         alt="Palm Reading Banner"
-         className="w-full h-[500px] object-cover"
-         />
+          <img
+            src="/palm-reading-banner.jpeg"
+            alt="Palm Reading Banner"
+            className="w-full h-[500px] object-cover"
+          />
 
         </div>
 
         {/* =====================================================
-            UPLOAD CARD
+            SCAN CARD
         ===================================================== */}
 
         <div className="bg-white/5 border border-white/10 rounded-[32px] p-8 backdrop-blur-xl">
 
           <div className="flex flex-col items-center">
 
-            {/* IMAGE UPLOAD */}
+            {/* SCAN BUTTON */}
 
             <label className="w-full max-w-md cursor-pointer">
 
               <div className="bg-yellow-400 text-black text-center py-4 rounded-2xl font-bold text-lg hover:scale-[1.02] transition">
 
-                Upload Palm Image
+                Scan Now
 
               </div>
 
