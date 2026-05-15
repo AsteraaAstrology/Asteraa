@@ -607,7 +607,7 @@ export default function Home() {
           <div className="rounded-[32px] overflow-hidden border border-yellow-500/20 shadow-2xl">
 
            <img
-           src="/kundali-chakra.jpg"
+           src="/kundali-chakra.jpeg"
            alt="Kundali Chakra"
            className="w-full object-cover"
            />
